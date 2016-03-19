@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+.all
+{
+text-align:center;
+width:600px
+}
+
+#leftAlign
+{
+text-align:left
+}
+</style>
+
+<script type="text/javascript" src="scripts.js"></script>
+
+<body>
+<div class="all">
+
+<h1>JavaScript Bits and Bobs</h1>
+
+<hr>
+
+<p>Validate your number below</p>
+<input id="numb" type="text">
+<button type="button" onclick="validateText()">Submit!</button>
+<p id="demo"></p>
+
+<hr>
+
+<img id="myimage" onclick="changeImage()"
+src="pic_bulboff.gif" width="100" height="180">
+<p>Click the light bulb to turn on/off the light</p>
+
+<hr>
+
+<p id="textToChange">Transform!</p>
+<button onclick="changeText()">Click me!</button>
+
+<hr>
+
+<button onclick="writeTest()">Experimental direct-write</button>
+
+<hr>
+
+<p>Press F12 and chose console to see console logging with below button</p>
+<button onclick="writeToLog()">Write text to log</button>
+
+<hr>
+
+<p id="personInfo">Two ways to access same information from var personObject</p>
+<button onclick="writeNamesFromObject()">Click!</button>
+<button onclick="writeNamesFromObject2()">Click!</button>
+
+<hr>
+
+<p>Display type of variable for:</p>
+<div id="typeOfText">
+'"John"'<br>
+3.14<br>
+false<br>
+{name:"john", age:34};
+</div>
+<br>
+<button onclick="getTypeOf()">Write text to log</button>
+
+<hr>
+
+<input type="button" value="Greet or throw error" onclick="message()" />
+
+<hr>
+
+<p>Please input a number between 5 and 10 or get error:</p>
+<input id="demo2234" type="text">
+<button type="button" onclick="throwException()">Test Input</button>
+<p id="mess"></p>
+
+<hr>
+
+<p id="searchString">Search the string "Is this all there is?" for 'is' using RegExp, modifiers global and ignoring case.</p>
+<button onclick="findIsUsingRegExp()">Find!</button>
+
+<hr>
+
+<div id="leftAlign"><pre>
+Accessing JavaScript Properties
+The syntax for accessing the property of an object is:
+
+objectName.property          // person.age
+
+objectName["property"]       // person["age"]
+
+objectName[expression]       // x = "age"; person[x]
+</div></pre>
+
+</div>
+</body>
+</html>

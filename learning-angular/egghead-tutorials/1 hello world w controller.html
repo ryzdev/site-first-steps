@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script type="text/javascript" src="1 hwController.js"></script>
+</head>
+
+<body>
+    <div ng-controller="FirstCtrl">
+        <b>{{data.message + ", world"}}</b>
+    </div>
+</body>
+
+</html>
+
+
+
+
+        <!--
+        1)everything inside FirstCtrl div has the scope of that controller
+        2)deleted user input data.message model, then created controller and passed in scope
+        3)data now being provided from a JavaScript file
+        4)within the scope created a model
+        5)in controller you write behavious, service calls etc, to get data to push into your view
+        -->

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="AvengersCtrl">
+        <input type="text" ng-model="search.$">
+        <table>
+            <tr ng-repeat="actor in avengers.cast | filter:search | orderBy:'name'">
+                <td>{{actor.name | lowercase}}</td>
+                <td>{{actor.character | uppercase}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+<script type="text/javascript" src="3 ngRepeat filtering.js"></script>
+</body>
+</html>
+
+        <!--
+                ng-repeat one of the most powerful directives
+                filter:limiter limits the search in this eg
+
+                model                        filter               effect
+                searchText                   |filter:searchText   limits on searchText
+                search.name (search object)  |filter:search       limits name only, not character
+                search.$                     |filter:search       searches all
+
+                                             |orderBy: 'name'     order alphabetically by name
+                                             |orderBy: '-name'    order alphabetically by name reversed
+                                             |limitTo:5           limit to 5 results
+                                             |limitTo:-5          limit to last 5 results
+                                             |uppercase           change to uppercase
+                                             |lowercase           change to lowercase
+                (stack with another |)
+
+        -->
+
+

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html ng-app="revisionApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Angular Revision App</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script type="text/javascript" src="revision.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body ng-controller="ShowHideController">
+
+<div class="menu">
+    <div ng-click="allDisappear()">
+        <ul>
+            <li class="a" id="textAboveList">New ideas introduced in each subsequent example are <span style="color:#FF0000">highlighted red</span></li>
+            <li class="a" enter="allDisappear();hideValue1=false">Hello world from text input</li>
+            <li class="a" enter="allDisappear();hideValue2=false">Hello world with controller</li>
+            <li class="a" enter="allDisappear();hideValue3=false">Evaluate string using <span ng-non-bindable>{{ }}</span></li>
+            <li class="a" enter="allDisappear();hideValue4=false">Sharing data between controllers using a service</li>
+            <li class="a" enter="allDisappear();hideValue5=false">Using Custom Filters</li>
+            <li class="a" enter="allDisappear();hideValue6=false">Using ng-repeat</li>
+            <li class="a" enter="allDisappear();hideValue7=false">Using ng-repeat with built-in filters</li>
+            Directives:
+            <li class="a" enter="allDisappear();hideValue8=false">Restrictions</li>
+            <li class="a" enter="allDisappear();hideValue9=false">Binding function to attribute</li>
+            <li class="a" enter="allDisappear();hideValue10=false">Simple isolate scope</li>
+            <li class="a" enter="allDisappear();hideValue11=false">Isolate scope '&' (as expression)</li>
+            <li class="a" enter="allDisappear();hideValue12=false">Isolate scope '@' (as string)</li>
+            <li class="a" enter="allDisappear();hideValue13=false">Isolate scope '=' (bind to object)</li>
+            <li class="a" enter="allDisappear();hideValue14=false">Isolate scope review & @ =</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div ng-hide="hideValue1">
+            <div class="centerAndPad">
+                <input type="text" ng-model="data.message">
+                <b>{{data.message + ", world"}}</b>
+            </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html <span style="color:#FF0000">ng-app</span>>
+
+            &lt;head>
+                <span style="color:#FF0000">&lt;script type="text/javascript"
+                        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js">&lt;/script></span>
+            &lt;/head>
+
+            &lt;body>
+            &lt;div>
+                &lt;input type="text" <span style="color:#FF0000">ng-model="data.message"</span>>
+                &lt;b><span style="color:#FF0000">&#123;&#123;data.message + " world"&#125;&#125;</span>&lt;/b>
+            &lt;/div>
+            &lt;/body>
+
+            &lt;/html>
+        </pre>
+        <hr>
+    </div>
+
+    <div ng-hide="hideValue2">
+        <div ng-controller="HelloWorldCtrl">
+            <div class="centerAndPad"><b>{{data.message + ", world"}}</b></div>
+            <hr>
+
+            <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html ng-app>
+
+            &lt;head>
+                &lt;script type="text/javascript"
+                        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js">&lt;/script>
+                <span style="color:#FF0000">&lt;script type="text/javascript" src="hwController.js">&lt;/script></span>
+            &lt;/head>
+
+            &lt;body>
+            &lt;div <span style="color:#FF0000">ng-controller="FirstCtrl"</span>>
+                &lt;b>&#123;&#123;data.message + " world"&#125;&#125;&lt;/b>
+            &lt;/div>
+            &lt;/body>
+
+            &lt;/html>
+            </pre>
+            <hr>
+            <pre ng-non-bindable>
+            <span style="color:#FF0000">function FirstCtrl($scope)&#123;
+                $scope.data = &#123;message: "Hello"&#125;;
+            }</span>
+            </pre>
+        </div>
+    </div>
+    
+    <div ng-hide="hideValue3">
+        <div ng-controller="EvaluateExpressionController">
+            <div class="centerAndPad">The meaning of life is {{giveMeaningOfLife()}}</div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html ng-app<span style="color:#FF0000">="evaluateExpression"</span>>
+            
+            &lt;head>
+                &lt;script type="text/javascript"
+                        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js">&lt;/script>
+                &lt;script type="text/javascript" src="evaluateExpression.js">&lt;/script>
+            &lt;/head>
+            
+            &lt;body>
+            &lt;div ng-controller="EvaluateExpressionController">
+                The meaning of life is {{<span style="color:#FF0000">giveMeaningOfLife()</span>}}
+            &lt;/div>
+            &lt;/body>
+            
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable><span style="color:#FF0000">
+            var app = angular.module("evaluateExpression", []);
+
+            app.controller("EvaluateExpressionController", function($scope) {
+                $scope.giveMeaningOfLife = function(){
+                    return 21*2;
+                }
+            })
+        </span></pre>
+    </div>
+
+    <div ng-hide="hideValue4">
+        <div class="centerAndPad">
+            <div ng-controller="FirstCtrl">
+                <input type="text" ng-model="thisData.myMessage">
+                <h1>{{thisData.myMessage}}</h1>
+            </div>
+            <br>
+            <div ng-controller="SecondCtrl">
+                <input type="text" ng-model="thisData.myMessage">
+                <h1>{{thisData.myMessage}}</h1>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;body>
+            
+            &lt;div ng-app="myApp">
+                &lt;div ng-controller="FirstCtrl">
+                    &lt;input type="text" ng-model="thisData.myMessage">
+                    &lt;h1>{{thisData.myMessage}}&lt;/h1>
+                &lt;/div>
+                &lt;br>
+                &lt;div ng-controller="SecondCtrl">
+                    &lt;input type="text" ng-model="thisData.myMessage">
+                    &lt;h1>{{thisData.myMessage}}&lt;/h1>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="2b sharingData.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var myApp = angular.module('myApp', []);
+
+            <span style="color:#FF0000">myApp.factory('MyService', function() {
+                return {myMessage: "data from a Service shared between controllers"}
+            })</span>
+
+            function FirstCtrl($scope<span style="color:#FF0000">, MyService</span>){
+              $scope.thisData = MyService;
+            }
+
+            function SecondCtrl($scope<span style="color:#FF0000">, MyService</span>){
+              $scope.thisData = MyService;
+            }
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue5">
+            <div ng-controller="FilterCtrl" class="centerAndPad">
+                <input type="text" ng-model="data.message">
+                <h1>{{data.message|reverse}}</h1>
+            </div>
+        <hr>
+            <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head>
+                &lt;title>Sharing data between controllers, defining a method on the scope, using a custom filter&lt;/title>
+            &lt;/head>
+            &lt;body>
+
+            &lt;div ng-app="myApp">
+                &lt;div ng-controller="FilterCtrl">
+                    &lt;input type="text" ng-model="data.message">
+                    &lt;h1>{{data.message|reverse}}&lt;/h1>
+                &lt;/div>
+            &lt;/div>
+
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="customFilter.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+            </pre>
+            <hr>
+            <pre ng-non-bindable>
+            var myApp = angular.module('myApp', []);
+
+            <span style="color:#FF0000">myApp.filter('reverse', function() {
+                return function(text) {
+                  return text.split("").reverse().join("");
+              }
+            })</span>
+
+            function FilterCtrl($scope){
+              $scope.data = {message: "Random Message"};
+            }
+            </pre>
+    </div>
+
+    <div ng-hide="hideValue6">
+        <div ng-controller="AvengersCtrl" class="centerAndPad">
+            <table>
+                <tr ng-repeat="actor in avengers.cast">
+                    <td>{{actor.name}}</td>
+                    <td>{{actor.character}}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head>
+                &lt;title>Search - AngularJS Tutorials&lt;/title>
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="myApp">
+                &lt;div <span style="color:#FF0000">ng-controller="AvengersCtrl"</span>>
+                    &lt;table>
+                        &lt;tr <span style="color:#FF0000">ng-repeat="actor in avengers.cast"</span>>
+                            &lt;td><span style="color:#FF0000">{{actor.name}}</span>&lt;/td>
+                            &lt;td><span style="color:#FF0000">{{actor.character}}</span>&lt;/td>
+                        &lt;/tr>
+                    &lt;/table>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="ngRepeat.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var myApp = angular.module('myApp', []);
+
+            myApp.factory('Avengers', function() {
+                var Avengers = {};
+                Avengers.cast = [
+                  {
+                    name: "Robert Downey Jr.",
+                    character: "Tony Stark / Iron Man"
+                  },
+                  {
+                    name: "Chris Evans",
+                    character: "Steve Rogers / Captain America"
+                  },
+                  {
+                    name: "Mark Ruffalo",
+                    character: "Bruce Banner / The Hulk"
+                  },
+                  {
+                    name: "Chris Hemsworth",
+                    character: "Thor"
+                  },
+                  {
+                    name: "Scarlett Johansson",
+                    character: "Natasha Romanoff / Black Widow"
+                  },
+                  {
+                    name: "Jeremy Renner",
+                    character: "Clint Barton / Hawkeye"
+                  },
+                  {
+                    name: "Tom Hiddleston",
+                    character: "Loki"
+                  },
+                  {
+                    name: "Clark Gregg",
+                    character: "Agent Phil Coulson"
+                  },
+                  {
+                    name: "Cobie Smulders",
+                    character: "Agent Maria Hill"
+                  },
+                  {
+                    name: "Stellan Skarsgard",
+                    character: "Selvig"
+                  },
+                  {
+                    name: "Samuel L. Jackson",
+                    character: "Nick Fury"
+                  },
+                  {
+                    name: "Gwyneth Paltrow",
+                    character: "Pepper Potts"
+                  },
+                  {
+                    name: "Paul Bettany",
+                    character: "Jarvis (voice)"
+                  },
+                  {
+                    name: "Alexis Denisof",
+                    character: "The Other"
+                  },
+                  {
+                    name: "Tina Benko",
+                    character: "NASA Scientist"
+                  }
+                ];
+                return Avengers;
+            })
+
+            function AvengersCtrl($scope, Avengers) {
+                $scope.avengers = Avengers;
+            }
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue7">
+        <div ng-controller="AvengersCtrl" class="centerAndPad">
+            <input type="text" ng-model="search.$">
+            <table>
+                <tr ng-repeat="actor in avengers.cast | filter:search | orderBy:'name'">
+                    <td>{{actor.name | lowercase}}</td>
+                    <td>{{actor.character | uppercase}}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;body>
+
+            &lt;div ng-app="myApp">
+                &lt;div ng-controller="AvengersCtrl">
+                    &lt;input type="text" ng-model=<span style="color:#FF0000">"search.$"</span>>
+                    &lt;table>
+                        &lt;tr ng-repeat="actor in avengers.cast<span style="color:#FF0000"> | filter:search | orderBy:'name'</span>">
+                            &lt;td>{{actor.name<span style="color:#FF0000"> | lowercase</span>}}&lt;/td>
+                            &lt;td>{{actor.character<span style="color:#FF0000"> | uppercase</span>}}&lt;/td>
+                        &lt;/tr>
+                    &lt;/table>
+                &lt;/div>
+            &lt;/div>
+
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="ngRepeat filtering.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var myApp = angular.module('myApp', []);
+
+            myApp.factory('Avengers', function() {
+                var Avengers = {};
+                Avengers.cast = [
+                  {
+                    name: "Robert Downey Jr.",
+                    character: "Tony Stark / Iron Man"
+                  },
+                  {
+                    name: "Chris Evans",
+                    character: "Steve Rogers / Captain America"
+                  },
+                  {
+                    name: "Mark Ruffalo",
+                    character: "Bruce Banner / The Hulk"
+                  },
+                  {
+                    name: "Chris Hemsworth",
+                    character: "Thor"
+                  },
+                  {
+                    name: "Scarlett Johansson",
+                    character: "Natasha Romanoff / Black Widow"
+                  },
+                  {
+                    name: "Jeremy Renner",
+                    character: "Clint Barton / Hawkeye"
+                  },
+                  {
+                    name: "Tom Hiddleston",
+                    character: "Loki"
+                  },
+                  {
+                    name: "Clark Gregg",
+                    character: "Agent Phil Coulson"
+                  },
+                  {
+                    name: "Cobie Smulders",
+                    character: "Agent Maria Hill"
+                  },
+                  {
+                    name: "Stellan Skarsgard",
+                    character: "Selvig"
+                  },
+                  {
+                    name: "Samuel L. Jackson",
+                    character: "Nick Fury"
+                  },
+                  {
+                    name: "Gwyneth Paltrow",
+                    character: "Pepper Potts"
+                  },
+                  {
+                    name: "Paul Bettany",
+                    character: "Jarvis (voice)"
+                  },
+                  {
+                    name: "Alexis Denisof",
+                    character: "The Other"
+                  },
+                  {
+                    name: "Tina Benko",
+                    character: "NASA Scientist"
+                  }
+                ];
+                return Avengers;
+            })
+
+            function AvengersCtrl($scope, Avengers) {
+                $scope.avengers = Avengers;
+            }
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue8">
+        <div class="centerAndPad">
+
+            Superman Element:
+            <superman></superman>
+            <br>
+            Wonderwoman Attribute:
+            <div wonderwoman></div>
+            <br>
+            HeMan Class:
+            <div class="heMan"></div>
+
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+                &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+                &lt;script type="text/javascript" src="simple directive.js">&lt;/script>
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="superhero" class="content">
+            
+                Superman Element:
+                <span style="color:#FF0000">&lt;superman>&lt;/superman></span>
+                &lt;br>
+                Wonderwoman Attribute:
+                <span style="color:#FF0000">&lt;div wonderwoman>&lt;/div></span>
+                &lt;br>
+                HeMan Class:
+                <span style="color:#FF0000">&lt;div class="heMan">&lt;/div></span>
+            
+            &lt;/div>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("superhero", []);
+            
+            <span style="color:#FF0000">app.directive("superman", function() {
+                return {
+                    restrict: "E",
+                    template: "</span>&lt;div style='border-style:inset;'>Here I am to save the day!&lt;/div><span style="color:#FF0000">"
+                }
+            })
+            
+            app.directive("wonderwoman", function() {
+                return {
+                    restrict: "A",
+                    template: "</span>&lt;div style='border-style:inset;'>Here I am to save the day!&lt;/div><span style="color:#FF0000">"
+                }
+            })
+            
+            app.directive("heMan", function() {
+                return {
+                    restrict: "C",
+                    template: "</span>&lt;div style='border-style:inset;'>Here I am to save the day!&lt;/div><span style="color:#FF0000">"
+                }
+            })</span>
+        </pre>
+
+    </div>
+
+    <div ng-hide="hideValue9">
+        <div class="centerAndPad">
+            <div ng-controller="thisCtrl">
+                <h2 enter="alertMessage()"> Rollover for a popup!</h2>
+            </div>
+            <h2 leave id="changeID">Transform on mouse <u>leave</u></h2>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+                &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+                &lt;script type="text/javascript" src="directive mouse bind.js">&lt;/script>
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="mouseBindApp" class="content">
+                &lt;div ng-controller="thisCtrl">
+                    &lt;h2 <span style="color:#FF0000">enter="alertMessage()"</span>> Rollover for a popup!&lt;/h2>
+                &lt;/div>
+
+                &lt;br>
+
+                &lt;h2 <span style="color:#FF0000">leave</span> id="changeID">Transform on mouse &lt;u>leave&lt;/u>&lt;/h2>
+            &lt;/div>
+            
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("mouseBindApp", []);
+
+            app.controller("thisCtrl", function($scope) {
+                $scope.alertMessage = function() {
+                    alert("TA DAH!!!");
+                }
+            })
+
+            app.directive("enter", function() {
+                return <span style="color:#FF0000">function(scope, element, attrs) {
+                    element.bind("mouseenter", function() {
+                        scope.$apply(attrs.enter)
+                    })</span>
+                }
+            })
+
+            app.directive("leave", function() {
+                return <span style="color:#FF0000">function(scope, element, attrs) {
+                    element.bind("mouseleave", function() {</span>
+                        document.getElementById("changeID").innerHTML="Alakazam!!";
+                    <span style="color:#FF0000">})</span>
+                }
+            })
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue10">
+        <div class="centerAndPad">
+            <div ng-controller="brokenByIsolateScopes">
+            <ownscope></ownscope>
+            <ownscope></ownscope>
+            <ownscope></ownscope>
+            <ownscope></ownscope>
+            <ownscope></ownscope>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html ng-app="isolateScopes">
+            &lt;head lang="en">
+                &lt;meta charset="UTF-8">
+                &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+                &lt;script type="text/javascript" src="5b isolateScope.js">&lt;/script>
+            &lt;/head>
+            &lt;body ng-controller="brokenByIsolateScopes"><span style="color:#FF0000">
+                &lt;ownscope>&lt;/ownscope>
+                &lt;ownscope>&lt;/ownscope>
+                &lt;ownscope>&lt;/ownscope>
+                &lt;ownscope>&lt;/ownscope>
+                &lt;ownscope>&lt;/ownscope></span>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("isolateScopes", []);
+
+
+            app.controller("brokenByIsolateScopes", function($scope) {
+                $scope.someText="display this text please!";
+            })
+            
+            app.directive("ownscope", function() {
+                return {
+                    restrict: "E",
+                    <span style="color:#FF0000">scope: {},</span>
+                    template:   '&lt;input type="text" ng-model="someText">'+
+                                '{{someText}}'+
+                                '&lt;br>'
+                }
+            })
+        </pre>
+    </div>
+    <div ng-hide="hideValue11">
+        <div class="padAndCenter">
+            <div ng-controller="AppCtrl">
+                Simple Phone:
+                <div simplephone dial="callSimpleMessage()"></div>
+                <hr>
+                Phone:
+                <div phone dialer="callThisMessage(message)"></div>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="phoneApp">
+                &lt;div ng-controller="AppCtrl">
+                    Simple Phone:
+                    &lt;div simplephone <span style="color:#FF00FF">dial="callSimpleMessage()</span>">&lt;/div>
+                    &lt;hr>
+                    Phone:
+                    &lt;div phone <span style="color:#FF0000">dialer="callThisMessage(message</span>)">&lt;/div>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="isolateScopeAND.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("phoneApp", []);
+
+            app.controller("AppCtrl", function($scope) {
+
+                $scope.callSimpleMessage = function() {
+                    alert('Blah Blah Blah')
+                }
+                $scope.callThisMessage = function(<span style="color:#FF0000">message</span>) {
+                        alert('Dialed home: "' + message + '"')
+                }
+            })
+
+            app.directive("simplephone", function() {
+                return {
+                    scope: {
+                        <span style="color:#FF00FF">dial: "&"</span>
+                    },
+                    template:   '&lt;input type="text">' +
+                                '&lt;button <span style="color:#FF00FF">ng-click="dial()</span>">Call home!&lt;/button>'
+                }
+            })
+
+            app.directive("phone", function() {
+                return {
+                    scope: {
+                        <span style="color:#FF0000">dialer: "&"</span>
+                    },
+                    template:   '&lt;input type="text" ng-model="value">' +
+                                '&lt;button <span style="color:#FF0000">ng-click="dialer({message:value})</span>">Call home!&lt;/button>'
+                }
+            })
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue12">
+        <div class="padAndCenter">
+            <div ng-app="drinkApp" class="centerAndPad">
+                <div ng-controller="ThisAppCtrl">
+                    <div drink flavour="rasberry"></div>
+                    <div drink flavour="banana"></div>
+                    <div drink flavour="{{ctrlFlavour}}"></div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="drinkApp">
+                &lt;div ng-controller="ThisAppCtrl">
+                    &lt;div drink <span style="color:#FF0000">flavour="rasberry"</span>>&lt;/div>
+                    &lt;div drink flavour="banana">&lt;/div>
+                    &lt;div drink <span style="color:#FF0000">flavour="{{ctrlFlavour}}</span>">&lt;/div>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="isolate scope AT.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("drinkApp", []);
+            
+            app.controller("ThisAppCtrl", function($scope) {
+                $scope.ctrlFlavour = "blackberry"
+            })
+            
+            app.directive("drink", function() {
+                return {
+                    scope: {
+                        <span style="color:#FF0000">flavour: "@"</span>
+                    },
+                    template: '&lt;div>{{flavour}} drink&lt;/div>'
+                }
+            })
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue13">
+        <div class="centerAndPad">
+            <div ng-controller="anAppController">
+                <input type="text" style="width:300px" ng-model="controllerObject">
+                
+                <div cheese thing="controllerObject"></div>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="anApp">
+                &lt;div ng-controller="anAppController">
+                    &lt;input type="text" style="width:300px" ng-model="controllerObject">
+            
+                    &lt;div cheese <span style="color:#FF0000">thing="controllerObject"</span>>&lt;/div>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="isolate scope EQUALS.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("anApp", []);
+            
+            app.controller("anAppController", function($scope) {
+                $scope.controllerObject = "directive binding to controllerObject"
+            })
+            
+            app.directive("cheese", function() {
+                return {
+                    scope: {
+                        <span style="color:#FF0000">thing: "="</span>
+                    },
+                    template: '&lt;input type="text" style="width:300px" ng-model="<span style="color:#FF0000">thing</span>">'
+                }
+            })
+        </pre>
+    </div>
+
+    <div ng-hide="hideValue14">
+        <div class="centerAndPad">
+            <div ng-app="phoneApp">
+                <div ng-controller="phoneAppCtrl">
+                    <phone number="023 80456215" network="network" make-call="leaveVoicemail(number, message)"></phone>
+                    <phone number="0161 2283632" network="network" make-call="leaveVoicemail(number, message)"></phone>
+                    <phone number="0845 045 4545" network="network" make-call="leaveVoicemail(number, message)"></phone>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <pre ng-non-bindable>
+            &lt;!DOCTYPE html>
+            &lt;html>
+            &lt;head lang="en">
+                &lt;meta charset="utf-8">
+            &lt;/head>
+            &lt;body>
+            
+            &lt;div ng-app="phoneApp">
+                &lt;div ng-controller="phoneAppCtrl">
+                    &lt;phone number="023 80456215" network="network" make-call="leaveVoicemail(number, message)">&lt;/phone>
+                    &lt;phone number="0161 2283632" network="network" make-call="leaveVoicemail(number, message)">&lt;/phone>
+                    &lt;phone number="0845 045 4545" network="network" make-call="leaveVoicemail(number, message)">&lt;/phone>
+                &lt;/div>
+            &lt;/div>
+            
+            &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js">&lt;/script>
+            &lt;script type="text/javascript" src="isolate scope review.js">&lt;/script>
+            &lt;/body>
+            &lt;/html>            
+        </pre>
+        <hr>
+        <pre ng-non-bindable>
+            var app = angular.module("phoneApp", []);
+            
+            app.controller("phoneAppCtrl", function($scope) {
+                $scope.leaveVoicemail = function(number, message) {
+                    if(!isNaN(message)){
+                        alert("Number: " + number + " dialed: " + message)
+                    } else {
+                        document.getElementById(number).innerHTML="invalid entry";
+                    }
+                }
+            })
+            
+            app.directive("phone", function() {
+                return {
+                    restrict: "E",
+                    scope: {
+                        number: "@",
+                        network: "=",
+                        makeCall: "&"
+                    },
+                    template:           '&lt;ul style="list-style:none;">'+
+                        '&lt;li>Number: {{number}}&lt;/li>'+
+                        '&lt;li>Network:&lt;select ng-model="network" ng-options="net for net in networks">&lt;/li>'+
+                        '&lt;li>&lt;input type="text" ng-model="value" >'+
+                            '&lt;span style="color:#FF0000;font-family:monospace" id="{{number}}">&lt;/span>&lt;/li>'+
+                        '&lt;li>&lt;button ng-click="makeCall({number: number, message: value})">Call!&lt;/button>&lt;/li>'+
+                        '&lt;br>'+
+                        '&lt;/ul>',
+            
+                    link: function(scope) {
+                        scope.networks = ["o2", "EE", "Vodaphone"];
+                        scope.network = scope.networks[0]
+                    }
+                }
+            })
+        </pre>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+        <!-- remove h1's in eg 4 -->
+
+<!--
+<div ng-hide="hideValue10">
+    <div class="padAndCenter">
+
+    </div>
+    <hr>
+        <pre ng-non-bindable>
+            
+        </pre>
+    <hr>
+        <pre ng-non-bindable>
+            
+        </pre>
+</div>-->

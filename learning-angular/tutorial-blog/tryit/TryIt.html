@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script type="text/javascript" src="tryit.js"></script>
+</head>
+
+<body>
+
+<div>
+    <input type="text" ng-model="noControllerData"> <h1>{{noControllerData|splitUp}}</h1>
+</div>
+
+<hr>
+
+<div>
+
+    <div ng-controller="MyController">
+        <input type="text" ng-model="data.name">
+        <h2>{{data.name}}</h2>
+    </div>
+
+    <div ng-controller="MySecondController">
+        <input type="text" ng-model="person.name"> Person's name is: {{person.name|splitUp}}
+
+    <hr>
+        <input type="text" ng-model="enterNumber">
+        <h1>Meaning of life is {{meaningOfLifeCalculator(enterNumber)}}</h1>
+    </div>
+
+    <hr>
+
+    <div ng-controller="jsonCtrl">
+        <table>
+            <tr ng-repeat="">
+
+            </tr>
+        </table>
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

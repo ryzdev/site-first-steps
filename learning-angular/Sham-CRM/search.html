@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app ="searchApp">
+<head>
+    <title>ShamCRM - Bob's Product Search</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script type="text/javascript" src="search.js"></script>
+
+</head>
+<body>
+    <div  id="topSection">
+        <img src="logo.png">
+    </div>
+
+    <div id="banner"></div>
+
+    <div ng-controller="SearchCtrl" id="container">
+        <div id="searchBox">
+            <a href="#"><img src="select button.png" class="searchSize"></a>
+            <input type="text" ng-model="search.$" class="searchBoxHeight">
+            <a href="#"><img src="Search Button.png" class="searchSize"></a>
+        </div>
+
+        <table>
+            <tr>
+                <td colspan="3">Bob's Cars | product search for package: {{dataList.package.sourceID}}
+                    {{" | " + dataList.package.name}} {{" | " + numProducts() + " Products in package"}}
+                <p>Dealer Website: <a href="http://{{dataList.package.dealerWebsite}}">
+                    {{dataList.package.dealerWebsite}}</a></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    Enter Product Name
+                    <input type="text" ng-model="newProductName">
+                    <button ng-click="addNewProduct()">Add New Product</button>
+                    |
+                    <button ng-click="clearAllProducts()">Clear all Products</button>
+                    <button ng-click="restoreOriginalProducts()">Cancel and restore original Products</button>
+                </td>
+            </tr>
+
+            <tr class="blueBackground">
+                <td class="firstColumn">Name</td>
+                <td>ID</td>
+                <td>Link</td>
+            </tr>
+            <tr ng-repeat="data in dataList.embedded.products | filter:search | orderBy:'name'">
+                <td>{{data.name}}</td>
+                <td>{{data.id}}</td>
+                <td>{{data.links.self.href}}</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

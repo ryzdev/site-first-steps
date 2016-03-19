@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sharing data between controllers, defining a method on the scope, using a custom filter</title>
+</head>
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="FirstCtrl">
+        <input type="text" ng-model="data.message">
+        <h1>{{data.message}}</h1>
+    </div>
+
+    <div ng-controller="SecondCtrl">
+        <input type="text" ng-model="data.message">
+        <h1>{{data.message}}</h1>
+        <h1>{{reversedMessage(data.message)}}</h1>      <!--Reverse message using method-->
+        <h1>{{data.message|reverse}}</h1>               <!--Reverse message using custom filter-->
+    </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<script type="text/javascript" src="2 sharing.js"></script>
+</body>
+</html>
+
+
+
+       <!--
+
+        Sharing data between controllers
+        1) define an app in js file, angular module 'MyApp', with no dependencies (no [])
+        2) with the app can create a factory to create a service, called 'Data'
+        3) add a function with a message
+        4) inject service into each controller using 'Data' lookup, so scopes can watch for changes
+
+        Defining a method on the scope
+        1) define a method called 'reversedMessage'
+        2) replace data.message with our function, and pass in data.message
+        3) it will now update if one of the scope model changes
+
+        Using custom filters
+        1) create a filter to handle this, first function for injection so can leave blank or e.g. inject Data again
+        1) this is a much better solution, as filters are module-wide and more reusable
+
+        -->

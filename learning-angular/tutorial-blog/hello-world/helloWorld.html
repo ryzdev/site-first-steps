@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>{{hello + ", world!"}}</h1>
+    <input type="text" ng-model="hello"/>
+</body>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+</html>
+
+
+  <!--  1)added in angular js file using script tag
+        2)instantiated the angularJS application using ng-app
+        3)bound to a simple value using ng-model (simple two-way binding with ng-model)
+
+        -->
+
+        
+        <!--
+        1)Bootstrapped the AngularJS system, by loading in AngularJS using the script tag
+        2)The ng-app directive gives the boundary of the AngularJS code
+        3)Initialised the model by giving the variable 'name' the value 'world'
+        4)Finally, using the double curly braces directive, told AngularJS to look into the model and substitute
+            the value of the variable 'name'
+            -->
